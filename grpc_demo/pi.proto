@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pi;
+
+service PiCalculator {
+    rpc Calc(PiRequest) returns (PiResponse) {}
+}
+
+message PiRequest {
+    int32 n = 2;
+}
+
+message PiResponse {
+    double value = 1;
+}

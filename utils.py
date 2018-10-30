@@ -1,5 +1,7 @@
 import json
 import struct
+import sys
+import time
 
 
 def make_response(result, status=666):
@@ -12,3 +14,17 @@ def make_response(result, status=666):
 
 def bad_response(result=None):
     return make_response(result, 0)
+
+
+def pretty_time(t=None, fmt='%H:%M:%S'):
+    t = t or time.localtime(int(time.time()))
+    dt = time.strftime(fmt, t)
+    return dt
+
+
+def log(*args, **kwargs):
+    print(pretty_time(), *args, **kwargs)
+
+
+def log_error(*args, **kwargs):
+    print(pretty_time(), *args, **kwargs, file=sys.stderr)
